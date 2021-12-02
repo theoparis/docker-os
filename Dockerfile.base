@@ -1,12 +1,31 @@
 FROM docker.io/debian:11
+ARG hostname="debian"
+ARG username="tim"
+ARG password="dows"
+
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt -y update
 RUN apt -y install --no-install-recommends \
-  linux-image-amd64 \
-  systemd-sysv \
-  zsh curl git \
+  linux-image-amd64 systemd \
+  systemd-sysv util-linux \
+  zsh curl git sudo \
+  less \
   ca-certificates \
-  build-essential
+  build-essential \
+  network-manager
 
-RUN echo "root:root" | chpasswd
+# Add user
+RUN adduser ${username} && \
+  usermod -aG sudo ${username} && \
+  usermod --shell /bin/zsh ${username}
+
+# Enable network manager
+RUN systemctl enable NetworkManager
+
+# Change passwords
+RUN echo "root:${password}" | chpasswd && \
+  echo "tim:${password}" | chpasswd tim
+RUN echo ${hostname} > /etc/hostname
 
 CMD /bin/zsh

@@ -33,7 +33,7 @@ DRIVE=${1:-/dev/sda1}
 ## replace __ROOT__ with the root device
 
 echo_blue "[Create disk image]"
-dd if=/dev/zero of=./timos.img bs=$(expr 1024 \* 1024 \* 1024 \* 2) count=1
+dd if=/dev/zero of=./timos.img bs=$(expr 1024 \* 1024 \* 1024) count=1
 
 echo_blue "[Make partition]"
 sfdisk ./timos.img < ./partition.txt
