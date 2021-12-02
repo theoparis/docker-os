@@ -16,9 +16,9 @@ RUN apt -y install --no-install-recommends \
   network-manager
 
 # Add user
-RUN adduser ${username} && \
+RUN adduser ${username} --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password && \
   usermod -aG sudo ${username} && \
-  usermod --shell /bin/zsh ${username}
+  usermod -s /bin/zsh ${username}
 
 # Enable network manager
 RUN systemctl enable NetworkManager
@@ -29,3 +29,4 @@ RUN echo "root:${password}" | chpasswd && \
 RUN echo ${hostname} > /etc/hostname
 
 CMD /bin/zsh
+

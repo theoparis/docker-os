@@ -1,5 +1,7 @@
 # docker-os
 
+[![pipeline status](https://gitlab.com/creepinson/docker-os/badges/main/pipeline.svg)](https://gitlab.com/creepinson/docker-os/-/commits/main) 
+
 An easy way to build operating system images using docker.
 
 ## Building an ISO
