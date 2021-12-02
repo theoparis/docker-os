@@ -1,0 +1,12 @@
+FROM docker.io/debian:11
+RUN apt -y update
+RUN apt -y install --no-install-recommends \
+  linux-image-amd64 \
+  systemd-sysv \
+  zsh curl git \
+  ca-certificates \
+  build-essential
+
+RUN echo "root:root" | chpasswd
+
+CMD /bin/zsh

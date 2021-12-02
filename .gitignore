@@ -1,0 +1,9 @@
+*.log*
+*.env*
+!.env.example
+.DS_Store
+build
+*.img
+*.iso
+*.qcow2
+mnt/
